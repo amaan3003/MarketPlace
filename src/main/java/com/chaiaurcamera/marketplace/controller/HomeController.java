@@ -1,5 +1,4 @@
-package com.chaiaurcamera.chaiAurCamera.controller;
-import com.chaiaurcamera.chaiAurCamera.model.Product;
+package com.chaiaurcamera.marketplace.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,14 +10,9 @@ public class HomeController {
     @GetMapping("/")
     @ResponseBody
     public String home(){
-        return "Server ki ma kaa...";
+        return "Server....";
     }
 
-
-    @GetMapping("/home")
-    public String homepage(){
-        return "index";
-    }
 
 }
 

@@ -1,4 +1,4 @@
-package com.chaiaurcamera.chaiAurCamera.model;
+package com.chaiaurcamera.marketplace.model;
 
 import jakarta.persistence.*;
 

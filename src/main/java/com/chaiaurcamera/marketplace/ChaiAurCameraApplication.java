@@ -1,4 +1,4 @@
-package com.chaiaurcamera.chaiAurCamera;
+package com.chaiaurcamera.marketplace;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
-@EnableJpaRepositories("com.chaiaurcamera.chaiAurCamera.repo")
-@EntityScan("com.chaiaurcamera.chaiAurCamera.model")
+@EnableJpaRepositories("com.chaiaurcamera.marketplace.repo")
+@EntityScan("com.chaiaurcamera.marketplace.model")
 public class ChaiAurCameraApplication {
 
 	public static void main(String[] args) {

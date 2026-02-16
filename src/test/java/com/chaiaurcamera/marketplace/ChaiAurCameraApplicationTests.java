@@ -1,4 +1,4 @@
-package com.chaiaurcamera.chaiAurCamera;
+package com.chaiaurcamera.marketplace;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
