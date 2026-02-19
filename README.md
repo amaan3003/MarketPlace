@@ -1,8 +1,15 @@
 📸 Dublin Student Marketplace
 
-A Spring Boot-based web application for Dublin students to buy and sell camera gear. This project features a full MVC architecture, database integration, and dynamic image uploading. 
+A Spring Boot-based web application for Dublin students to buy and sell camera gear. This project features a full MVC architecture, database integration, and dynamic image uploading.This project bridges the gap between a standard university assignment and a real-world functional application.
 
 **NOTE** - The project is still under work and is in it's last stage of completion.
+
+## Branch Structure
+This repository is organized into two distinct branches:
+
+**master**: The foundation. A basic web application featuring core CRUD (Create, Read, Update, Delete) functionality, built strictly for University submission.
+
+**camera-marketplace**: The evolution. This is the primary branch where I have implemented advanced features like dynamic image uploading, professional UI layouts, and specialized logic for camera gear trading.
 
 🚀 Features
 - **Product** Listing: Users can list gear with name, description, and price.
