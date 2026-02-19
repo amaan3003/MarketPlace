@@ -2,14 +2,20 @@ package com.chaiaurcamera.marketplace.controller;
 
 import com.chaiaurcamera.marketplace.model.Product;
 import com.chaiaurcamera.marketplace.repo.ProductRepository;
+import com.chaiaurcamera.marketplace.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class ProductController {
@@ -58,6 +64,50 @@ public class ProductController {
     public String deleteProduct(@PathVariable Long id) {
         productRepository.deleteById(id);
         return "redirect:/marketplace";
+    }
+
+    @Autowired
+    private ProductService productService;
+
+    @PostMapping("/items/add")
+    public String handleFileUpload(@ModelAttribute Product product,
+                                   @RequestParam("imageFile") MultipartFile file,
+                                   Model model) {
+
+        if (file.isEmpty()) {
+            model.addAttribute("error", "Oye! Camera ki photo toh daal pehle.");
+            return "sell";
+        }
+
+        try {
+            // Path logic
+            String uploadDirectory = "src/main/resources/static/images/";
+
+            // Folder check: Agar images folder nahi hai toh bana do (Safety first!)
+            Path uploadPath = Paths.get(uploadDirectory);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+
+            String originalFilename = file.getOriginalFilename();
+            String uniqueFileName = UUID.randomUUID().toString() + "_" + originalFilename;
+            Path path = uploadPath.resolve(uniqueFileName);
+
+            // File save logic
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+            // Item URL set logic
+            product.setImageUrl("/images/" + uniqueFileName);
+
+            // Database save
+            productService.saveProduct(product);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "error";
+        }
+
+        return "redirect:/buy";
     }
 
 
